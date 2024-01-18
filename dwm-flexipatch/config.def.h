@@ -8,6 +8,11 @@ static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL }
 static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
 
+//pgrep -x nm-applet && pkill nm-applet || nm-applet &
+//static const char *closenmapplet[] = { "pgrep", "-x", "nm-applet", "&&", "pkill", "nm-applet", "||", "nm-applet", NULL };
+static const char *closenmapplet[] = { "bash", "-c", "pgrep -x nm-applet && pkill nm-applet || nm-applet &", NULL };
+static const char *opennmapplet[] = { "nm-applet", NULL };
+
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
 static const unsigned int borderpx       = 0;   /* border pixel of windows */
@@ -915,6 +920,7 @@ static const Key keys[] = {
     { 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
     { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+	{ MODKEY,                       XK_p,          spawn,                  {.v = closenmapplet } },
 
     
 	#if RIODRAW_PATCH
