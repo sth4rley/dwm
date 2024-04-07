@@ -1,11 +1,8 @@
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
-
-	{"Bat 1:", "acpi | awk 'NR==1 {print $5}'",					5,		0},
-	{"Bat 2:", "acpi | awk 'NR==2 {print $5}'",					5,		0},
+    {"Bat:", "battery",5, 0},
 	{"Mem:", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	30,		0},
-
 	{"", "date '+%b %d (%a) %I:%M%p'",					5,		0},
 };
 
